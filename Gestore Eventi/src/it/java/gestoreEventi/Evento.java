@@ -1,17 +1,21 @@
 package it.java.gestoreEventi;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
 
 public class Evento {
 
     private String titoloEvento;
     private LocalDateTime dataEvento;
     private int postiTotali;
-    private int postiPrenotati;
+    private int postiDisponibili;
+    private int postiPrenotati = 0;
+
+    private Scanner scan = new Scanner(System.in);
 
     // ----------------------------------------------
-    // ----------- GETTERS & SETTERD ----------------
+    // ----------- GETTERS & SETTERs ----------------
     // ----------------------------------------------
 
     public void setTitoloEvento(String titoloEvento) {
@@ -42,12 +46,11 @@ public class Evento {
     // -------------- COSTRUTTORE -------------------
     // ----------------------------------------------
 
-    public Evento(String titoloEvento, LocalDateTime dataEvento, int postiTotali) {
+    public Evento(String titoloEvento) {
 
         this.postiPrenotati = 0;
         this.titoloEvento = titoloEvento;
-        this.dataEvento = dataEvento;
-        this.postiTotali = postiTotali;
+        this.dataEvento = LocalDateTime.of(2024, 07, 12, 21, 00, 00);
 
         // LocalDateTime currentDate = LocalDateTime.now();
 
@@ -66,20 +69,57 @@ public class Evento {
 
     public void prenota(int postiDaPrenotare) {
 
-        if (postiDaPrenotare < this.postiTotali) {
-            this.postiTotali -= postiDaPrenotare;
+        LocalDateTime currentDate = LocalDateTime.now();
+
+        if (checkDate(currentDate, dataEvento)) {
+
+            if (postiDaPrenotare > this.postiDisponibili) {
+                System.out.println(
+                        "\n - ! ATTENZIONE ! - \n La disponibilità di posti per questo evento non soddisfa la sua richiesta. \n IMPOSSIBILE COMPLETARE L'OPERAZIONE");
+            } else {
+                System.out.println("\n Prenotazione effettuata con successo");
+                this.postiDisponibili -= postiDaPrenotare;
+
+            }
+
         }
 
     }
 
-    public void disdici() {
+    public void disdici(int postiDaDisdire) {
 
+        LocalDateTime currentDate = LocalDateTime.now();
+        // ZonedDateTime eventDate = null;
+
+        if (checkDate(currentDate, dataEvento)) {
+
+            if (postiDaDisdire <= this.postiPrenotati) {
+                System.out.println(
+                        "\n - ! ATTENZIONE ! - \n Impossibile disdire pià posti di quanti ne siano stati prenotati. \n IMPOSSIBILE COMPLETARE L'OPERAZIONE");
+            } else {
+                System.out.println("\n Operazione effettuata con successo");
+                postiDisponibili += postiDaDisdire;
+
+            }
+
+        }
+        System.out.printf("\n Posti attualmente disponibili : %s ", this.postiTotali);
     }
 
-    @Override
+    public boolean checkDate(LocalDateTime currentDateTime, LocalDateTime eventDateTime) {
+
+        return currentDateTime.isBefore(eventDateTime);
+    }
+
+    // ----------------------------------------------
+    // ---------------- ToSTRING --------------------
+    // ----------------------------------------------
+
     public String toString() {
 
-        return super.toString();
-    }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataFormattata = dataEvento.format(formatter);
+        return dataFormattata + " - " + titoloEvento;
 
+    }
 }
