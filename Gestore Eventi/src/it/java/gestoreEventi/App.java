@@ -16,7 +16,12 @@ public class App {
 
             Evento event = new Evento("concerto");
 
-            event.toString();
+            System.out.printf("\n Stai prenotando l'evento : %s ", event.toString());
+
+            System.out.print("\n Quanti posti vuoi orenotare  per l'evento ? ");
+            int postiDaPrenotare = scan.nextInt();
+
+            event.prenota(postiDaPrenotare);
 
         }
 
