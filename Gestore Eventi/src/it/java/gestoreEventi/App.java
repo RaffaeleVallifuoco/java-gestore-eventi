@@ -4,17 +4,20 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("\n - PRENOTAZIONE EVENTI - \n");
+        System.out.println("\n - TICKETRAFFO - \n");
 
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("\n Vuoi prenotare l'evento ? \n");
+        System.out.println("\n A quale evento sei interessato ? \n");
+        System.out.println(
+                "\n Eventi disponibili :    COLDPLAY concerto evento Milano S.Siro(07/07/2025)   |    E FUORI NEVICA prima teatrale (04/08/1999) \n");
+        System.out.println("\n ! INSERIRE SOLO NOME EVENTO (coldplay / efuorinevica) SENZA SPAZI ! \n");
 
         String choice = scan.nextLine();
 
-        if (choice.equalsIgnoreCase("si")) {
+        if (choice.equalsIgnoreCase("")) {
 
-            Evento event = new Concerto();
+            Evento event = new ConcertoPrato();
 
             System.out.printf("\n Stai prenotando : %s ", event.toString());
 

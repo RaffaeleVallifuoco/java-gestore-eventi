@@ -8,7 +8,7 @@ public class Evento {
 
     private String titoloEvento;
     private LocalDateTime dataEvento;
-    private long postiTotali;
+    private int postiTotali;
     private int postiDisponibili;
     private int postiPrenotati = 0;
 
@@ -46,7 +46,7 @@ public class Evento {
         return dataEvento;
     }
 
-    public long getPostiTotali() {
+    public int getPostiTotali() {
         return postiTotali;
     }
 
@@ -61,7 +61,7 @@ public class Evento {
     public Evento(String titoloEvento) {
 
         this.postiPrenotati = 0;
-        this.postiTotali = 10000;
+        this.postiTotali = 8000;
         this.titoloEvento = titoloEvento;
         this.dataEvento = LocalDateTime.of(2024, 07, 12, 21, 00, 00);
 
