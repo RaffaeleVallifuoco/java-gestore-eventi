@@ -13,8 +13,8 @@ public class App {
 
         while (!inputValido) {
             System.out.println(
-                    "\n Eventi disponibili :    COLDPLAY concerto evento Milano S.Siro(07/07/2025)   |    E FUORI NEVICA prima teatrale (04/08/1999) \n");
-            System.out.println("\n ! INSERIRE SOLO NOME EVENTO (coldplay / efuorinevica) SENZA SPAZI ! \n");
+                    "\n Eventi disponibili :    BABY K - Donna Sulla Luna  •Milano S.Siro(07/07/2025)   |    E FUORI NEVICA prima teatrale (04/08/1999) \n");
+            System.out.println("\n ! INSERIRE SOLO NOME EVENTO (babyk / efuorinevica) SENZA SPAZI ! \n");
 
             String choice = scan.nextLine();
 
@@ -24,7 +24,7 @@ public class App {
 
             // controllo validità imput utente
 
-            if (choice.equalsIgnoreCase("coldplay") || choice.equalsIgnoreCase("efuorinevica")) {
+            if (choice.equalsIgnoreCase("babyk") || choice.equalsIgnoreCase("efuorinevica")) {
                 inputValido = true;
 
                 switch (choice.toLowerCase()) {
@@ -34,7 +34,7 @@ public class App {
 
                         break;
 
-                    case "coldplay":
+                    case "babyk":
 
                         System.out.println("\n A che posto sei interessato ? (PRATO  |  I ANELLO  |  TRIBUNA)");
                         String ticketChoice = scan.nextLine();
@@ -72,7 +72,35 @@ public class App {
 
                 if (newEvent != null) {
 
-                    System.out.printf("\n Hai scelto : %s ", newEvent.toString());
+                    System.out.printf("\n Hai scelto : %s \n", newEvent.toString());
+
+                    System.out.println(
+                            "\n Cosa vuoi fare : PRENOTA UN BIGLIETTO  (digita : prenota) |   DISDICI UN BIGLIETTO (digita : disdici) \n");
+
+                    String ticketChoice = scan.nextLine();
+
+                    switch (ticketChoice.toLowerCase()) {
+                        case "prenota":
+                            System.out.printf(
+                                    "Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
+                                    newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
+
+                            newEvent.prenota();
+                            break;
+
+                        case "disdici":
+                            System.out.printf(
+                                    "Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
+                                    newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
+
+                            newEvent.disdici();
+                            break;
+
+                        default:
+                            System.out.println("\n Scelta non corretta \n");
+                            break;
+
+                    }
 
                 }
 

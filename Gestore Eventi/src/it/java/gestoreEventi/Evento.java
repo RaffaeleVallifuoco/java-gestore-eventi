@@ -80,31 +80,44 @@ public class Evento {
     // ----------------- METODI ---------------------
     // ----------------------------------------------
 
-    public void prenota(int postiDaPrenotare) {
+    public void prenota() {
 
         LocalDateTime currentDate = LocalDateTime.now();
 
         if (checkDate(currentDate, dataEvento)) {
+            System.out.println("\n QUanti posti vuoi prenotare ? \b");
+            int postiDaPrenotare = scan.nextInt();
+            scan.nextLine();
 
             if (postiDaPrenotare > this.postiDisponibili) {
                 System.out.println(
-                        "\n - ! ATTENZIONE ! - \n La disponibilità di posti per questo evento non soddisfa la sua richiesta. \n IMPOSSIBILE COMPLETARE L'OPERAZIONE");
+                        "\n - ! ATTENZIONE ! - \n La disponibilità di posti per questo evento non soddisfa la sua richiesta. \n IMPOSSIBILE COMPLETARE L'OPERAZIONE \n");
             } else {
-                System.out.println("\n Prenotazione effettuata con successo");
+
+                System.out.println("\n Prenotazione effettuata con successo \n");
                 this.postiDisponibili -= postiDaPrenotare;
+                this.postiPrenotati += postiDaPrenotare;
+                System.out.printf("\nPosti ora disponibili : %s   |   Posti ancora disponibili : %s   \n",
+                        this.postiDisponibili, this.postiPrenotati);
 
             }
 
+        } else {
+            System.out.println(
+                    "\n ! ERRORE ! La data dell'evento selezionato è già passata. \n IMPOSSIBILE COMPLETARE L'OPERAZIONE \n");
         }
 
     }
 
-    public void disdici(int postiDaDisdire) {
+    public void disdici() {
 
         LocalDateTime currentDate = LocalDateTime.now();
         // ZonedDateTime eventDate = null;
 
         if (checkDate(currentDate, dataEvento)) {
+            System.out.println("\n Quanti posti vuoi disdire ? \n");
+            int postiDaDisdire = scan.nextInt();
+            scan.nextLine();
 
             if (postiDaDisdire <= this.postiPrenotati) {
                 System.out.println(

@@ -24,7 +24,7 @@ public class SpettacoloTeatrale extends Evento {
 
         this.prezzoSpettacolo = 100.00;
 
-        this.setDataEvento(LocalDateTime.of(1999, 8, 4, 20, 00, 00));
+        this.setDataEvento(LocalDateTime.of(1999, 07, 4, 20, 00, 00));
 
         this.setPostiDisponibili(500);
     }

@@ -20,7 +20,7 @@ public class Concerto extends Evento {
 
     public Concerto() {
 
-        super("COLDPLAY -Milano-");
+        super("BABY K - Donna Sulla Luna  •Milano• ");
 
         // this.prezzoConcerto = 100.00;
 
