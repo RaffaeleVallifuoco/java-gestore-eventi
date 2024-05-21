@@ -14,9 +14,9 @@ public class App {
 
         if (choice.equalsIgnoreCase("si")) {
 
-            Evento event = new Evento("concerto");
+            Evento event = new Concerto();
 
-            System.out.printf("\n Stai prenotando l'evento : %s ", event.toString());
+            System.out.printf("\n Stai prenotando : %s ", event.toString());
 
             System.out.print("\n Quanti posti vuoi orenotare  per l'evento ? ");
             int postiDaPrenotare = scan.nextInt();

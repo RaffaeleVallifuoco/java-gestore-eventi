@@ -8,7 +8,7 @@ public class Evento {
 
     private String titoloEvento;
     private LocalDateTime dataEvento;
-    private int postiTotali;
+    private long postiTotali;
     private int postiDisponibili;
     private int postiPrenotati = 0;
 
@@ -20,6 +20,18 @@ public class Evento {
 
     public void setTitoloEvento(String titoloEvento) {
         this.titoloEvento = titoloEvento;
+    }
+
+    public int getPostiDisponibili() {
+        return postiDisponibili;
+    }
+
+    public void setPostiDisponibili(int postiDisponibili) {
+        this.postiDisponibili = postiDisponibili;
+    }
+
+    public void setPostiPrenotati(int postiPrenotati) {
+        this.postiPrenotati = postiPrenotati;
     }
 
     public void setDataEvento(LocalDateTime dataEvento) {
@@ -34,7 +46,7 @@ public class Evento {
         return dataEvento;
     }
 
-    public int getPostiTotali() {
+    public long getPostiTotali() {
         return postiTotali;
     }
 
@@ -49,6 +61,7 @@ public class Evento {
     public Evento(String titoloEvento) {
 
         this.postiPrenotati = 0;
+        this.postiTotali = 10000;
         this.titoloEvento = titoloEvento;
         this.dataEvento = LocalDateTime.of(2024, 07, 12, 21, 00, 00);
 
@@ -117,9 +130,9 @@ public class Evento {
 
     public String toString() {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dataFormattata = dataEvento.format(formatter);
-        return dataFormattata + " - " + titoloEvento;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy' . Ore 'HH:mm");
+        String dataFormattata = this.dataEvento.format(formatter);
+        return titoloEvento + " del " + dataFormattata;
 
     }
 }
