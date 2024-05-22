@@ -55,7 +55,7 @@ public class Evento {
     }
 
     // ----------------------------------------------
-    // -------------- COSTRUTTORE -------------------
+    // -------------- COSTRUTTORI -------------------
     // ----------------------------------------------
 
     public Evento(String titoloEvento) {
@@ -65,14 +65,14 @@ public class Evento {
         this.titoloEvento = titoloEvento;
         this.dataEvento = LocalDateTime.of(2024, 07, 12, 21, 00, 00);
 
-        // LocalDateTime currentDate = LocalDateTime.now();
+    }
 
-        // if (dataEvento.isBefore(currentDate)) {
-        // System.out.println("\n L'evento desiderato è già avvenuto ! Impossibile
-        // effettuare prenotazione");
-        // }else {
-        // Evento myEvento = new Evento(titoloEvento, dataEvento, postiTotali);
-        // }
+    public Evento(String titoloEvento, LocalDateTime dataEvento, int postiDisponibili) {
+
+        this.titoloEvento = titoloEvento;
+        this.dataEvento = dataEvento;
+        this.postiDisponibili = postiDisponibili;
+        this.postiPrenotati = 0;
 
     }
 
@@ -143,7 +143,7 @@ public class Evento {
 
     public String toString() {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy' . Ore 'HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy.HH:mm");
         String dataFormattata = this.dataEvento.format(formatter);
         return titoloEvento + " del " + dataFormattata;
 
