@@ -125,11 +125,14 @@ public class Evento {
             } else {
                 System.out.println("\n Operazione effettuata con successo");
                 postiDisponibili += postiDaDisdire;
+                postiPrenotati -= postiDaDisdire;
 
             }
 
         }
-        System.out.printf("\n Posti attualmente disponibili : %s ", this.postiTotali);
+        System.out.printf("\nPosti ora disponibili : %s   |   Posti prenotati : %s   \n",
+                this.postiDisponibili, this.postiPrenotati);
+
     }
 
     public boolean checkDate(LocalDateTime currentDateTime, LocalDateTime eventDateTime) {

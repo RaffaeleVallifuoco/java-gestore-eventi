@@ -10,9 +10,11 @@ public class App {
         System.out.println("\n - TICKETRAFFO - \n");
 
         Scanner scan = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         boolean inputValido = false;
         LocalDateTime dataEventoFormattata = null;
         boolean validInput = false;
+        boolean ripeti = true;
 
         System.out.println("\n A quale servizio sei interessato ? \n");
 
@@ -124,7 +126,6 @@ public class App {
                         boolean validator = false;
 
                         System.out.println("\n A che posto sei interessato ? (PRATO  |  I ANELLO  |  TRIBUNA)");
-                        Scanner input = new Scanner(System.in);
                         String ticketChoice = input.nextLine();
 
                         while (!validator) {
@@ -176,40 +177,51 @@ public class App {
 
                     System.out.printf("\n Hai scelto : %s \n", newEvent.toString());
 
-                    System.out.println(
-                            "\n Cosa vuoi fare : PRENOTA UN BIGLIETTO  (digita : prenota) |   DISDICI UN BIGLIETTO (digita : disdici) \n");
+                    while (ripeti) {
 
-                    scan.nextLine();
-                    String ticketChoice = scan.nextLine();
+                        System.out.println(
+                                "\n Cosa vuoi fare : PRENOTA UN BIGLIETTO  (digita : prenota) |   DISDICI UN BIGLIETTO (digita : disdici) \n");
 
-                    switch (ticketChoice.toLowerCase()) {
-                        case "prenota":
-                            System.out.printf(
-                                    "Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
-                                    newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
+                        String ticketChoice = input.nextLine();
 
-                            newEvent.prenota();
-                            break;
+                        switch (ticketChoice.toLowerCase()) {
+                            case "prenota":
+                                System.out.printf(
+                                        "Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
+                                        newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
 
-                        case "disdici":
-                            System.out.printf(
-                                    "Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
-                                    newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
+                                newEvent.prenota();
+                                break;
 
-                            newEvent.disdici();
-                            break;
+                            case "disdici":
+                                System.out.printf(
+                                        "Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
+                                        newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
 
-                        default:
-                            System.out.println("\n Scelta non corretta \n");
-                            break;
+                                newEvent.disdici();
+                                break;
+
+                            default:
+                                System.out.println("\n Scelta non corretta \n");
+                                break;
+
+                        }
+
+                        System.out.println(
+                                "\n Vuoi prenotare / disdire un altro posto per l'evento selezionato ? [SI]  [NO] ");
+
+                        String sceltaRipeti = input.nextLine();
+
+                        if (sceltaRipeti.compareToIgnoreCase("no") == 0) {
+                            ripeti = false;
+                        }
 
                     }
-
+                } else {
+                    System.out.println("Errore: l'input non è valido. Riprova.");
                 }
-
-            } else {
-                System.out.println("Errore: l'input non è valido. Riprova.");
             }
+
         }
         scan.close();
     }
