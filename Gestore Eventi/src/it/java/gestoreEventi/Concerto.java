@@ -61,9 +61,4 @@ public class Concerto extends Evento {
         return super.toString() + " - Prezzo : " + formattaPrezzo();
     }
 
-    public String toStringUtente() {
-
-        return this.getTitoloEvento() + this.getDataEvento();
-    }
-
 }

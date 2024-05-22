@@ -97,7 +97,7 @@ public class Evento {
                 System.out.println("\n Prenotazione effettuata con successo \n");
                 this.postiDisponibili -= postiDaPrenotare;
                 this.postiPrenotati += postiDaPrenotare;
-                System.out.printf("\nPosti ora disponibili : %s   |   Posti ancora disponibili : %s   \n",
+                System.out.printf("\nPosti ora disponibili : %s   |   Posti prenotati : %s   \n",
                         this.postiDisponibili, this.postiPrenotati);
 
             }
@@ -119,7 +119,7 @@ public class Evento {
             int postiDaDisdire = scan.nextInt();
             scan.nextLine();
 
-            if (postiDaDisdire <= this.postiPrenotati) {
+            if (postiDaDisdire >= this.postiPrenotati) {
                 System.out.println(
                         "\n - ! ATTENZIONE ! - \n Impossibile disdire pià posti di quanti ne siano stati prenotati. \n IMPOSSIBILE COMPLETARE L'OPERAZIONE");
             } else {

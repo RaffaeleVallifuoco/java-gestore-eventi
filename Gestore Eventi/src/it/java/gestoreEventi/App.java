@@ -11,6 +11,8 @@ public class App {
 
         Scanner scan = new Scanner(System.in);
         boolean inputValido = false;
+        LocalDateTime dataEventoFormattata = null;
+        boolean validInput = false;
 
         System.out.println("\n A quale servizio sei interessato ? \n");
 
@@ -38,7 +40,6 @@ public class App {
                         System.out.println(
                                 "\n Che stipo di evento vuoi inserire ?  [1]  Concerto  |  [2]  Evento generico  \n ");
                         int inserimento = scan.nextInt();
-                        scan.close();
 
                         switch (inserimento) {
                             case 1: // NUOVO CONCERTO
@@ -49,8 +50,8 @@ public class App {
                                 String nomeEvento = scan.nextLine();
                                 scan.nextLine();
 
-                                LocalDateTime dataEventoFormattata = null;
-                                boolean validInput = false;
+                                // LocalDateTime dataEventoFormattata = null;
+                                // boolean validInput = false;
 
                                 while (!validInput) {
                                     System.out.print(
