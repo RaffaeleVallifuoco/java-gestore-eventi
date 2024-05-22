@@ -34,8 +34,8 @@ public class Concerto extends Evento {
     }
 
     public Concerto(String titoloEvento, LocalDateTime dataEvento, double prezzoConcerto, int postiDisponibili) {
-
         super(titoloEvento, dataEvento, postiDisponibili);
+        System.out.println(titoloEvento);
         this.prezzoConcerto = prezzoConcerto;
 
     }

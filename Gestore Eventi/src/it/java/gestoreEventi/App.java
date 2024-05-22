@@ -42,6 +42,7 @@ public class App {
                         System.out.println(
                                 "\n Che stipo di evento vuoi inserire ?  [1]  Concerto  |  [2]  Evento generico  \n ");
                         int inserimento = scan.nextInt();
+                        scan.nextLine();
 
                         switch (inserimento) {
                             case 1: // NUOVO CONCERTO
@@ -49,8 +50,7 @@ public class App {
                                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy.HH:mm");
 
                                 System.out.print("\n Inserisci il nome dell'evento :  ");
-                                String nomeEvento = scan.nextLine();
-                                scan.nextLine();
+                                String nomeEvento = input.nextLine();
 
                                 // LocalDateTime dataEventoFormattata = null;
                                 // boolean validInput = false;
