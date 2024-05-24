@@ -18,10 +18,6 @@ public class Concerto extends Evento {
         this.prezzoConcerto = prezzoConcerto;
     }
 
-    // --------------------------------------------------
-    // ------------------ COSTRUTTORI -------------------
-    // --------------------------------------------------
-
     public Concerto() {
 
         super("BABY K - Donna Sulla Luna  •Milano• ");
@@ -35,7 +31,6 @@ public class Concerto extends Evento {
 
     public Concerto(String titoloEvento, LocalDateTime dataEvento, double prezzoConcerto, int postiDisponibili) {
         super(titoloEvento, dataEvento, postiDisponibili);
-        System.out.println(titoloEvento);
         this.prezzoConcerto = prezzoConcerto;
 
     }
@@ -43,6 +38,8 @@ public class Concerto extends Evento {
     // ---------------------------------------------------
     // ------------------- METODI ------------------------
     // ---------------------------------------------------
+
+    // FORMATTAZIONE PREZZO (--,--€)
 
     private String formattaPrezzo() {
 
@@ -54,6 +51,8 @@ public class Concerto extends Evento {
 
         return prezzoFormattato;
     }
+
+    // OVERRIDE TOSTRING SUPER
 
     @Override
     public String toString() {

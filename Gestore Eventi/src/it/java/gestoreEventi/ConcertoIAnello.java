@@ -4,7 +4,7 @@ public class ConcertoIAnello extends Concerto {
 
     public ConcertoIAnello() {
 
-        this.setTitoloEvento("BABY K •Milano• Prato");
+        this.setTitoloEvento("BABY K •Milano• I Anello");
         this.setPrezzoConcerto(52.99);
 
     }

@@ -34,16 +34,16 @@ public class Evento {
         this.postiPrenotati = postiPrenotati;
     }
 
+    public LocalDateTime getDataEvento() {
+        return dataEvento;
+    }
+
     public void setDataEvento(LocalDateTime dataEvento) {
         this.dataEvento = dataEvento;
     }
 
     public String getTitoloEvento() {
         return titoloEvento;
-    }
-
-    public LocalDateTime getDataEvento() {
-        return dataEvento;
     }
 
     public int getPostiTotali() {
@@ -80,6 +80,8 @@ public class Evento {
     // ----------------- METODI ---------------------
     // ----------------------------------------------
 
+    // PRENOTA TICKET
+
     public void prenota() {
 
         LocalDateTime currentDate = LocalDateTime.now();
@@ -93,6 +95,12 @@ public class Evento {
                 System.out.println(
                         "\n - ! ATTENZIONE ! - \n La disponibilità di posti per questo evento non soddisfa la sua richiesta. \n IMPOSSIBILE COMPLETARE L'OPERAZIONE \n");
             } else {
+
+                try {
+                    // Pausa di 1 secondo (1000 millisecondi)
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
 
                 System.out.println("\n Prenotazione effettuata con successo \n");
                 this.postiDisponibili -= postiDaPrenotare;
@@ -109,6 +117,8 @@ public class Evento {
 
     }
 
+    // DISDICI TICKET
+
     public void disdici() {
 
         LocalDateTime currentDate = LocalDateTime.now();
@@ -123,6 +133,13 @@ public class Evento {
                 System.out.println(
                         "\n - ! ATTENZIONE ! - \n Impossibile disdire pià posti di quanti ne siano stati prenotati. \n IMPOSSIBILE COMPLETARE L'OPERAZIONE");
             } else {
+
+                try {
+                    // Pausa di 1 second0 (1000 millisecondi)
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+
                 System.out.println("\n Operazione effettuata con successo");
                 postiDisponibili += postiDaDisdire;
                 postiPrenotati -= postiDaDisdire;
@@ -134,6 +151,8 @@ public class Evento {
                 this.postiDisponibili, this.postiPrenotati);
 
     }
+
+    // CHECK DATA CORRENTE < DATA EVENTO
 
     public boolean checkDate(LocalDateTime currentDateTime, LocalDateTime eventDateTime) {
 

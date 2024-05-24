@@ -10,6 +10,10 @@ public class SpettacoloTeatrale extends Evento {
 
     private double prezzoSpettacolo;
 
+    // --------------------------------------------------
+    // --------------- GETTER / SETTERS -----------------
+    // --------------------------------------------------
+
     public double getPrezzoSpettacolo() {
         return prezzoSpettacolo;
     }
@@ -17,6 +21,10 @@ public class SpettacoloTeatrale extends Evento {
     public void setPrezzoEvento(double prezzoEvento) {
         this.prezzoSpettacolo = prezzoEvento;
     }
+
+    // --------------------------------------------------
+    // ------------------ COSTRUTTORI -------------------
+    // --------------------------------------------------
 
     public SpettacoloTeatrale() {
 
@@ -29,6 +37,10 @@ public class SpettacoloTeatrale extends Evento {
         this.setPostiDisponibili(500);
     }
 
+    // --------------------------------------------------
+    // -------------------- METODI ----------------------
+    // --------------------------------------------------
+
     private String formattaPrezzo() {
 
         Locale italia = Locale.ITALY;
@@ -39,6 +51,8 @@ public class SpettacoloTeatrale extends Evento {
 
         return prezzoFormattato;
     }
+
+    // OVERRIDE TOSTRING SUPER
 
     @Override
     public String toString() {
