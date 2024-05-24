@@ -86,7 +86,7 @@ public class Evento {
 
         LocalDateTime currentDate = LocalDateTime.now();
 
-        if (checkDate(currentDate, dataEvento)) {
+        if (checkDate(currentDate, dataEvento) && checkPositive()) {
             System.out.println("\n QUanti posti vuoi prenotare ? \b");
             int postiDaPrenotare = scan.nextInt();
             scan.nextLine();
@@ -124,7 +124,7 @@ public class Evento {
         LocalDateTime currentDate = LocalDateTime.now();
         // ZonedDateTime eventDate = null;
 
-        if (checkDate(currentDate, dataEvento)) {
+        if (checkDate(currentDate, dataEvento) && checkPositive()) {
             System.out.println("\n Quanti posti vuoi disdire ? \n");
             int postiDaDisdire = scan.nextInt();
             scan.nextLine();
@@ -157,6 +157,13 @@ public class Evento {
     public boolean checkDate(LocalDateTime currentDateTime, LocalDateTime eventDateTime) {
 
         return currentDateTime.isBefore(eventDateTime);
+    }
+
+    // cehck posti prenotati > o
+
+    public boolean checkPositive() {
+
+        return (postiTotali > 0);
     }
 
     // ----------------------------------------------

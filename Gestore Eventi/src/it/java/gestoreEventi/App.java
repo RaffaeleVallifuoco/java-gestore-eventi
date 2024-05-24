@@ -102,7 +102,8 @@ public class App {
 
                                 while (!validInput) {
                                     System.out.print(
-                                            "\n Inserisci la data dell'evento ( FORMATO (dd/MM/yyyy.HH:mm) :  ");
+                                            "\n Inserisci la data e l'ora dell'evento separati da un punto ( FORMATO (dd/MM/yyyy.HH:mm) :  ");
+
                                     String dataEvento = scan.nextLine();
 
                                     try {
