@@ -11,9 +11,9 @@ public class TestMain {
 
         ProgrammaEventi listaeventi = new ProgrammaEventi("Programma concerti");
 
-        LocalDateTime data1 = LocalDateTime.of(2024, 01, 15, 21, 00, 00);
-        LocalDateTime data2 = LocalDateTime.of(2025, 07, 12, 20, 00, 00);
-        LocalDateTime data3 = LocalDateTime.of(2024, 07, 02, 11, 00, 00);
+        LocalDateTime data1 = LocalDateTime.of(2024, 1, 15, 21, 00, 00);
+        LocalDateTime data2 = LocalDateTime.of(2025, 7, 12, 20, 00, 00);
+        LocalDateTime data3 = LocalDateTime.of(2024, 7, 02, 11, 00, 00);
         Evento concerto1 = new Evento("concerto1", data1, 123);
         Evento concerto2 = new Evento("concerto2", data2, 299);
         Evento concerto3 = new Evento("concerto3", data3, 24);
