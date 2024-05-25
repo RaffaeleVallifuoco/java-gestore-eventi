@@ -1,6 +1,8 @@
 package it.java.gestoreEventi;
 
 import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
 
@@ -8,6 +10,8 @@ public class Evento {
 
     private String titoloEvento;
     private LocalDateTime dataEvento;
+    private LocalDate data;
+    private LocalTime time;
     private int postiTotali;
     private int postiDisponibili;
     private int postiPrenotati = 0;
@@ -71,6 +75,16 @@ public class Evento {
 
         this.titoloEvento = titoloEvento;
         this.dataEvento = dataEvento;
+        this.postiDisponibili = postiDisponibili;
+        this.postiPrenotati = 0;
+
+    }
+
+    public Evento(String titoloEvento, LocalDate data, LocalTime time, int postiDisponibili) {
+
+        this.titoloEvento = titoloEvento;
+        this.data = data;
+        this.time = time;
         this.postiDisponibili = postiDisponibili;
         this.postiPrenotati = 0;
 
