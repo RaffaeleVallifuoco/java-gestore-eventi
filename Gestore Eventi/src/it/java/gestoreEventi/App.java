@@ -7,13 +7,14 @@ import java.time.format.DateTimeParseException;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("\n - TICKETRAFFO - \n");
+        System.out.println("\n - TICKETRAFFO © - \n");
 
         Scanner scan = new Scanner(System.in);
         Scanner input = new Scanner(System.in);
-        boolean inputValido = false;
         LocalDateTime dataEventoFormattata = null;
+        ProgrammaEventi listaEventi = new ProgrammaEventi("Eventy TICKETRAFFO ©");
         boolean validInput = false;
+        boolean inputValido = false;
         boolean ripeti = true;
 
         // istanzio evento generico che verrà specificato in seguito
@@ -88,6 +89,8 @@ public class App {
                                 newEvent = new Concerto(nomeEvento, dataEventoFormattata, prezzoConcerto,
                                         postiDisponibili);
 
+                                listaEventi.aggiungiEvento(newEvent);
+
                                 break;
 
                             case "2": // NUOVO EVENTO GENERICO
@@ -130,6 +133,8 @@ public class App {
 
                                 newEvent = new Evento(nomeEvento, dataEventoFormattata, postiDisponibili);
 
+                                listaEventi.aggiungiEvento(newEvent);
+
                                 break;
 
                         }
@@ -149,6 +154,7 @@ public class App {
                                 case "1":
 
                                     newEvent = new ConcertoPrato();
+                                    listaEventi.aggiungiEvento(newEvent);
                                     validator = true;
 
                                     break;
@@ -156,6 +162,7 @@ public class App {
                                 case "2":
 
                                     newEvent = new ConcertoIAnello();
+                                    listaEventi.aggiungiEvento(newEvent);
                                     validator = true;
 
                                     break;
@@ -163,6 +170,7 @@ public class App {
                                 case "3":
 
                                     newEvent = new ConcertoTribuna();
+                                    listaEventi.aggiungiEvento(newEvent);
                                     validator = true;
 
                                     break;
@@ -229,12 +237,44 @@ public class App {
                         }
 
                         System.out.println(
-                                "\n Vuoi prenotare / disdire un altro posto per l'evento selezionato ? \n [SI]  [NO] ");
+                                "\n Vuoi prenotare / disdire un altro posto per l'evento selezionato ? \n [S]  [N] ");
 
                         String sceltaRipeti = scan.nextLine();
 
-                        if (sceltaRipeti.compareToIgnoreCase("no") == 0) {
+                        if (sceltaRipeti.compareToIgnoreCase("n") == 0) {
                             ripeti = false;
+
+                            boolean loop = false;
+
+                            System.out.println(
+                                    "\n Vuoi stampare la lista completa degli eventi presenti a database ? \n [S] [N]");
+                            String printChoice = scan.nextLine();
+
+                            switch (printChoice.toLowerCase()) {
+                                case "s":
+                                    try {
+                                        // Pausa di 1 secondo (1000 millisecondi)
+                                        Thread.sleep(1000);
+                                    } catch (InterruptedException e) {
+                                    }
+
+                                    System.out.println("\n Recupero gli eventi...... attendi....\n");
+                                    try {
+                                        // Pausa di 2 secondi (2000 millisecondi)
+                                        Thread.sleep(2000);
+                                    } catch (InterruptedException e) {
+                                    }
+
+                                    listaEventi.stampaProgramma();
+
+                                    break;
+
+                                case "n":
+
+                                default:
+                                    System.err.println("\n Scelta non corretta");
+                                    break;
+                            }
 
                             System.out.println("\n\n ---- Uscita dal programma in corso ... ---\n\n");
 

@@ -1,6 +1,7 @@
 package it.java.gestoreEventi;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,6 +23,11 @@ public class ProgrammaEventi {
     public ProgrammaEventi(String titolo) {
         this.titolo = titolo;
         this.eventList = new ArrayList<>();
+        aggiungiEvento(new Concerto("Coldplay Rome", LocalDateTime.of(2024, 07, 30, 20, 50), 44.99, 2000));
+        aggiungiEvento(new Concerto("Gigi d'AgostinolIVE @ Altromondo Studios ", LocalDateTime.of(2025, 06, 28, 22, 00),
+                40.00, 5000));
+        aggiungiEvento(new Concerto("Cristian Marchi LIVE @ Plasmaphobia  ", LocalDateTime.of(2025, 10, 11, 22, 22),
+                39.98, 1232));
     }
 
     // ---------------------------------------------------
@@ -62,7 +68,7 @@ public class ProgrammaEventi {
     // STAMPA LISTA
 
     public void stampaProgramma() {
-        System.out.println(titolo);
+        System.out.printf("\n  - Eventi presenti nel database : - \n %s \n", titolo);
 
         // Ordino gli eventi per data
         Collections.sort(eventList, Comparator.comparing(Evento::getDataEvento));

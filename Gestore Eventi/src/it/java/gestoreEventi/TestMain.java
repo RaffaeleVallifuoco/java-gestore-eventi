@@ -22,8 +22,6 @@ public class TestMain {
         listaeventi.aggiungiEvento(concerto2);
         listaeventi.aggiungiEvento(concerto3);
 
-        System.out.println(" - Stampa lista -");
-
         listaeventi.stampaProgramma();
 
         LocalDate dataRicerca = LocalDate.of(2024, 07, 02);
