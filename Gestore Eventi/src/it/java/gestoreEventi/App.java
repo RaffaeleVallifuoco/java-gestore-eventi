@@ -6,8 +6,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         System.out.println("\n - TICKETRAFFO © - \n");
+        try {
+            // Pausa di 2 secondi (2000 millisecondi)
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+        }
 
         Scanner scan = new Scanner(System.in);
         Scanner input = new Scanner(System.in);
@@ -22,10 +27,15 @@ public class App {
         Evento newEvent = null;
 
         System.out.println("\n A quale servizio sei interessato ? \n");
+        try {
+            // Pausa di 1 second0 (1000 millisecondi)
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
 
         while (!inputValido) {
             System.out.println(
-                    "\n [1] INSERISCI UN NUOVO EVENTO   |  [2]  PRENOTA O DISDICI UN TICKET PER L'EVENTO :  'BABY K - Donna Sulla Luna  •Milano S.Siro(07/07/2025)'' |1n|   [3]  PRENOTA O DISDICI UN TICKET PER L'EVENTO :  'E FUORI NEVICA prima teatrale (04/08/1999)'' \n");
+                    "\n [1] INSERISCI UN NUOVO EVENTO   |  [2]  PRENOTA O DISDICI UN TICKET PER L'EVENTO :  'BABY K - Donna Sulla Luna  •Milano S.Siro(07/07/2025)'' |\n|   [3]  PRENOTA O DISDICI UN TICKET PER L'EVENTO :  'E FUORI NEVICA prima teatrale (04/08/1999)'' \n");
             System.out.println(
                     "\n -------- ! INSERIRE IL NUMERO CORRISPONDENTE ALLA SCELTA DESIDERATA | ------------- \n");
 
@@ -50,7 +60,7 @@ public class App {
                                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy.HH:mm");
 
                                 System.out.print("\n Inserisci il nome dell'evento :  ");
-                                String nomeEvento = input.nextLine();
+                                String nomeEvento = scan.nextLine();
 
                                 // LocalDateTime dataEventoFormattata = null;
                                 // boolean validInput = false;
@@ -78,7 +88,7 @@ public class App {
                                 int postiDisponibili = input.nextInt();
                                 input.nextLine();
 
-                                System.out.println("\n ... inserimento in corso (wait a second) ... \n");
+                                System.out.println("\n ... inserimento in corso (please wait) ... \n");
 
                                 try {
                                     // Pausa di 2 secondi (2000 millisecondi)
@@ -207,6 +217,14 @@ public class App {
                     System.out.printf("\n Hai scelto : %s \n", newEvent.toString());
 
                     while (ripeti) {
+                        try {
+                            // Pausa di 0,5 secondi (500 millisecondi)
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                        }
+                        System.out.printf(
+                                "\n Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
+                                newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
 
                         System.out.println(
                                 "\n Cosa vuoi fare : [1]  PRENOTA UN BIGLIETTO  |  [2]  DISDICI UN BIGLIETTO \n");
@@ -216,7 +234,7 @@ public class App {
                         switch (ticketChoice.toLowerCase()) {
                             case "1":
                                 System.out.printf(
-                                        "\n Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
+                                        "\n Posti ora disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
                                         newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
 
                                 newEvent.prenota();
@@ -244,8 +262,6 @@ public class App {
                         if (sceltaRipeti.compareToIgnoreCase("n") == 0) {
                             ripeti = false;
 
-                            boolean loop = false;
-
                             System.out.println(
                                     "\n Vuoi stampare la lista completa degli eventi presenti a database ? \n [S] [N]");
                             String printChoice = scan.nextLine();
@@ -270,6 +286,8 @@ public class App {
                                     break;
 
                                 case "n":
+                                    System.out.println("");
+                                    break;
 
                                 default:
                                     System.err.println("\n Scelta non corretta");

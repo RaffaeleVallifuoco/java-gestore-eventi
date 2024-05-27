@@ -74,6 +74,7 @@ public class Evento {
     public Evento(String titoloEvento, LocalDateTime dataEvento, int postiDisponibili) {
 
         this.titoloEvento = titoloEvento;
+        this.postiTotali = 8000;
         this.dataEvento = dataEvento;
         this.postiDisponibili = postiDisponibili;
         this.postiPrenotati = 0;
@@ -83,6 +84,7 @@ public class Evento {
     public Evento(String titoloEvento, LocalDate data, LocalTime time, int postiDisponibili) {
 
         this.titoloEvento = titoloEvento;
+        this.postiTotali = 8000;
         this.data = data;
         this.time = time;
         this.postiDisponibili = postiDisponibili;
@@ -126,7 +128,7 @@ public class Evento {
 
         } else {
             System.out.println(
-                    "\n ! ERRORE ! La data dell'evento selezionato è già passata. \n IMPOSSIBILE COMPLETARE L'OPERAZIONE \n");
+                    "\n ! ERRORE ! La data dell'evento selezionato è già passata oppure l'evento non accetta prenotazioni \n -IMPOSSIBILE COMPLETARE L'OPERAZIONE- \n");
         }
 
     }
@@ -145,7 +147,7 @@ public class Evento {
 
             if (postiDaDisdire >= this.postiPrenotati) {
                 System.out.println(
-                        "\n - ! ATTENZIONE ! - \n Impossibile disdire pià posti di quanti ne siano stati prenotati. \n IMPOSSIBILE COMPLETARE L'OPERAZIONE");
+                        "\n - ! ATTENZIONE ! - \n Impossibile disdire pià posti di quanti ne siano stati prenotati. \n -IMPOSSIBILE COMPLETARE L'OPERAZIONE-");
             } else {
 
                 try {
@@ -154,15 +156,17 @@ public class Evento {
                 } catch (InterruptedException e) {
                 }
 
-                System.out.println("\n Operazione effettuata con successo");
+                System.out.println("\n -Operazione effettuata con successo-");
                 postiDisponibili += postiDaDisdire;
                 postiPrenotati -= postiDaDisdire;
 
             }
-
+        } else {
+            System.out.println(
+                    "\n ! ERRORE ! La data dell'evento selezionato è già passata oppure l'evento non accetta prenotazioni \n -IMPOSSIBILE COMPLETARE L'OPERAZIONE- \n");
         }
-        System.out.printf("\nPosti ora disponibili : %s   |   Posti prenotati : %s   \n",
-                this.postiDisponibili, this.postiPrenotati);
+        System.out.printf("\nPosti ora disponibili : %s   |   Posti prenotati : %s   \n", this.postiDisponibili,
+                this.postiPrenotati);
 
     }
 
