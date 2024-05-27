@@ -68,7 +68,7 @@ public class ProgrammaEventi {
     // STAMPA LISTA
 
     public void stampaProgramma() {
-        System.out.printf("\n  - Eventi presenti nel database : - \n %s \n", titolo);
+        System.out.printf("\n  - Eventi presenti nel database : - \n•%s• \n", titolo);
 
         // Ordino gli eventi per data
         Collections.sort(eventList, Comparator.comparing(Evento::getDataEvento));

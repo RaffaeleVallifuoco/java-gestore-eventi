@@ -1,37 +1,23 @@
 package it.java.gestoreEventi;
 
-import java.time.LocalDateTime;
 import java.util.Scanner;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class App {
     public static void main(String[] args) {
         System.out.println("\n - TICKETRAFFO © - \n");
-        try {
-            // Pausa di 2 secondi (2000 millisecondi)
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
+
+        Manager.pausa(2);
 
         Scanner scan = new Scanner(System.in);
         Scanner input = new Scanner(System.in);
-        LocalDateTime dataEventoFormattata = null;
         ProgrammaEventi listaEventi = new ProgrammaEventi("Eventy TICKETRAFFO ©");
-        boolean validInput = false;
+        Evento newEvent = null; // istanzio evento generico che verrà specificato in seguito
         boolean inputValido = false;
         boolean ripeti = true;
 
-        // istanzio evento generico che verrà specificato in seguito
-
-        Evento newEvent = null;
-
         System.out.println("\n A quale servizio sei interessato ? \n");
-        try {
-            // Pausa di 1 second0 (1000 millisecondi)
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-        }
+
+        Manager.pausa(1000);
 
         while (!inputValido) {
             System.out.println(
@@ -43,7 +29,7 @@ public class App {
 
             // controllo validità imput utente
 
-            if (choice.equalsIgnoreCase("1") || choice.equalsIgnoreCase("2") || choice.equalsIgnoreCase("3")) {
+            if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
 
                 inputValido = true;
 
@@ -57,93 +43,26 @@ public class App {
                         switch (inserimento) {
                             case "1": // NUOVO CONCERTO
 
-                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy.HH:mm");
-
-                                System.out.print("\n Inserisci il nome dell'evento :  ");
-                                String nomeEvento = scan.nextLine();
-
-                                // LocalDateTime dataEventoFormattata = null;
-                                // boolean validInput = false;
-
-                                while (!validInput) {
-                                    System.out.print(
-                                            "\n Inserisci la data dell'evento ( FORMATO (dd/MM/yyyy.HH:mm) :  ");
-                                    String dataEvento = scan.nextLine();
-
-                                    try {
-
-                                        dataEventoFormattata = LocalDateTime.parse(dataEvento, formatter);
-                                        validInput = true;
-                                    } catch (DateTimeParseException e) {
-                                        System.err.println(
-                                                "\n Formato data non valido. Per favore, inserisci un valore corretto.\n");
-                                    }
-                                }
+                                Manager.inputEvento();
 
                                 System.out.print("\n Inserisci il prezzo del biglietto :  ");
                                 double prezzoConcerto = input.nextDouble();
                                 input.nextLine();
 
-                                System.out.print("\n Inserisci i posti disponibili per l'evento : \n");
-                                int postiDisponibili = input.nextInt();
-                                input.nextLine();
-
                                 System.out.println("\n ... inserimento in corso (please wait) ... \n");
 
-                                try {
-                                    // Pausa di 2 secondi (2000 millisecondi)
-                                    Thread.sleep(2000);
-                                } catch (InterruptedException e) {
-                                }
+                                Manager.pausa(2000);
 
-                                newEvent = new Concerto(nomeEvento, dataEventoFormattata, prezzoConcerto,
-                                        postiDisponibili);
-
-                                listaEventi.aggiungiEvento(newEvent);
+                                newEvent = new Concerto(Manager.nomeEvento, Manager.dataEventoFormattata,
+                                        prezzoConcerto,
+                                        Manager.postiDisponibili);
 
                                 break;
 
                             case "2": // NUOVO EVENTO GENERICO
 
-                                formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy.HH:mm");
-                                System.out.print("\n Inserisci il nome dell'evento :  ");
-                                nomeEvento = scan.nextLine();
-                                scan.nextLine();
-
-                                dataEventoFormattata = null;
-                                validInput = false;
-
-                                while (!validInput) {
-                                    System.out.print(
-                                            "\n Inserisci la data e l'ora dell'evento separati da un punto ( FORMATO (dd/MM/yyyy.HH:mm) :  ");
-
-                                    String dataEvento = scan.nextLine();
-
-                                    try {
-
-                                        dataEventoFormattata = LocalDateTime.parse(dataEvento, formatter);
-                                        validInput = true;
-                                    } catch (DateTimeParseException e) {
-                                        System.err.println(
-                                                "\n -Formato data non valido. Per favore, inserisci un valore corretto-\n");
-                                    }
-                                }
-
-                                System.out.print("\n Inserisci i posti disponibili per l'evento : ");
-                                postiDisponibili = input.nextInt();
-                                input.nextLine();
-
-                                System.out.println("\n ... inserimento in corso (wait a second) ... \n");
-
-                                try {
-                                    // Pausa di 2 secondi (2000 millisecondi)
-                                    Thread.sleep(2000);
-                                } catch (InterruptedException e) {
-                                }
-
-                                newEvent = new Evento(nomeEvento, dataEventoFormattata, postiDisponibili);
-
-                                listaEventi.aggiungiEvento(newEvent);
+                                newEvent = new Evento(Manager.nomeEvento, Manager.dataEventoFormattata,
+                                        Manager.postiDisponibili);
 
                                 break;
 
@@ -164,7 +83,7 @@ public class App {
                                 case "1":
 
                                     newEvent = new ConcertoPrato();
-                                    listaEventi.aggiungiEvento(newEvent);
+
                                     validator = true;
 
                                     break;
@@ -172,7 +91,7 @@ public class App {
                                 case "2":
 
                                     newEvent = new ConcertoIAnello();
-                                    listaEventi.aggiungiEvento(newEvent);
+
                                     validator = true;
 
                                     break;
@@ -180,7 +99,7 @@ public class App {
                                 case "3":
 
                                     newEvent = new ConcertoTribuna();
-                                    listaEventi.aggiungiEvento(newEvent);
+
                                     validator = true;
 
                                     break;
@@ -208,20 +127,14 @@ public class App {
 
                 if (newEvent != null) {
 
-                    try {
-                        // Pausa di 0,5 secondi (500 millisecondi)
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                    }
+                    listaEventi.aggiungiEvento(newEvent); // AGGIUNGI EVENTO AD ARRAYLIST EVENTI IN PTOGRAMMA
+
+                    Manager.pausa(500);
 
                     System.out.printf("\n Hai scelto : %s \n", newEvent.toString());
 
                     while (ripeti) {
-                        try {
-                            // Pausa di 0,5 secondi (500 millisecondi)
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                        }
+                        Manager.pausa(500);
                         System.out.printf(
                                 "\n Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
                                 newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
@@ -262,47 +175,13 @@ public class App {
                         if (sceltaRipeti.compareToIgnoreCase("n") == 0) {
                             ripeti = false;
 
-                            System.out.println(
-                                    "\n Vuoi stampare la lista completa degli eventi presenti a database ? \n [S] [N]");
-                            String printChoice = scan.nextLine();
-
-                            switch (printChoice.toLowerCase()) {
-                                case "s":
-                                    try {
-                                        // Pausa di 1 secondo (1000 millisecondi)
-                                        Thread.sleep(1000);
-                                    } catch (InterruptedException e) {
-                                    }
-
-                                    System.out.println("\n Recupero gli eventi...... attendi....\n");
-                                    try {
-                                        // Pausa di 2 secondi (2000 millisecondi)
-                                        Thread.sleep(2000);
-                                    } catch (InterruptedException e) {
-                                    }
-
-                                    listaEventi.stampaProgramma();
-
-                                    break;
-
-                                case "n":
-                                    System.out.println("");
-                                    break;
-
-                                default:
-                                    System.err.println("\n Scelta non corretta");
-                                    break;
-                            }
+                            Manager.listaEventi(listaEventi);
 
                             System.out.println("\n\n ---- Uscita dal programma in corso ... ---\n\n");
 
-                            try {
-                                // Pausa di 2 secondi (2000 millisecondi)
-                                Thread.sleep(2000);
-                            } catch (InterruptedException e) {
-                            }
+                            Manager.pausa(3000);
 
-                            System.out.println("\n TICKETRAFFO -> GOODBYE \n");
+                            System.out.println("\n TICKETRAFFO © -> GOODBYE \n");
                         }
 
                     }
