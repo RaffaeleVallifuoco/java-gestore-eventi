@@ -4,24 +4,33 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("\n - TICKETRAFFO © - \n");
 
-        Manager.pausa(2);
+        Manager.pausa(5000); // Pausa necessaria per aprire il terminale :)
 
-        Scanner scan = new Scanner(System.in);
-        Scanner input = new Scanner(System.in);
-        ProgrammaEventi listaEventi = new ProgrammaEventi("Eventy TICKETRAFFO ©");
+        System.out.println("\n - TICKETRAFFO © - ");
+
+        Manager.pausa(100);
+
+        System.out.println("     Welcome \n"); // SPAZI NECESSARI PER CENTRATURA CARATTERI
+
+        Manager.pausa(2000);
+
+        // GLOBAL VAR.
+
+        Scanner scan = new Scanner(System.in); // SCANNER PER INPUT STRING
+        Scanner input = new Scanner(System.in); // SCANNER PER INPUT INT E DOUBLE
+        ProgrammaEventi listaEventi = new ProgrammaEventi("\nEventy TICKETRAFFO ©\n");
         Evento newEvent = null; // istanzio evento generico che verrà specificato in seguito
         boolean inputValido = false;
         boolean ripeti = true;
 
         System.out.println("\n A quale servizio sei interessato ? \n");
 
-        Manager.pausa(1000);
+        Manager.pausa(500);
 
-        while (!inputValido) {
+        while (!inputValido) { // LOOP RIPETIZIONE SCELTA IN CASO DI INPUT NON VALIDO
             System.out.println(
-                    "\n [1] INSERISCI UN NUOVO EVENTO   |  [2]  PRENOTA O DISDICI UN TICKET PER L'EVENTO :  'BABY K - Donna Sulla Luna  •Milano S.Siro(07/07/2025)'' |\n|   [3]  PRENOTA O DISDICI UN TICKET PER L'EVENTO :  'E FUORI NEVICA prima teatrale (04/08/1999)'' \n");
+                    "\n [1] INSERISCI UN NUOVO EVENTO   |  [2]  PRENOTA O DISDICI UN TICKET PER L'EVENTO :  'BABY K - Donna Sulla Luna  •Milano S.Siro(07/07/2025)'' |\n| [3]  PRENOTA O DISDICI UN TICKET PER L'EVENTO :  'E FUORI NEVICA prima teatrale (04/08/1999)'' \n");
             System.out.println(
                     "\n -------- ! INSERIRE IL NUMERO CORRISPONDENTE ALLA SCELTA DESIDERATA | ------------- \n");
 
@@ -33,7 +42,8 @@ public class App {
 
                 inputValido = true;
 
-                switch (choice) {
+                switch (choice) { // SWITCH SCELTA UTENTE
+
                     case "1": // NUOVO INSERIMENTO
 
                         System.out.println(
@@ -41,6 +51,7 @@ public class App {
                         String inserimento = scan.nextLine();
 
                         switch (inserimento) {
+
                             case "1": // NUOVO CONCERTO
 
                                 Manager.inputEvento();
@@ -53,6 +64,8 @@ public class App {
 
                                 Manager.pausa(2000);
 
+                                // CREAZIONE OGGETTO DI TIPO EVENTO CON COSTRUTTORE SPECIFICO
+
                                 newEvent = new Concerto(Manager.nomeEvento, Manager.dataEventoFormattata,
                                         prezzoConcerto,
                                         Manager.postiDisponibili);
@@ -60,6 +73,8 @@ public class App {
                                 break;
 
                             case "2": // NUOVO EVENTO GENERICO
+
+                                // CREAZIONE OGGETTO DI TIPO EVENTO CON COSTRUTTORE SPECIFICO
 
                                 newEvent = new Evento(Manager.nomeEvento, Manager.dataEventoFormattata,
                                         Manager.postiDisponibili);
@@ -71,6 +86,7 @@ public class App {
                         break;
 
                     case "2": // CONCERTO BABY K
+
                         boolean validator = false;
 
                         System.out.println(
@@ -80,7 +96,10 @@ public class App {
                         while (!validator) {
 
                             switch (ticketChoice.toLowerCase()) {
+
                                 case "1":
+
+                                    // CREAZIONE OGGETTO DI TIPO EVENTO CON COSTRUTTORE SPECIFICO
 
                                     newEvent = new ConcertoPrato();
 
@@ -90,6 +109,8 @@ public class App {
 
                                 case "2":
 
+                                    // CREAZIONE OGGETTO DI TIPO EVENTO CON COSTRUTTORE SPECIFICO
+
                                     newEvent = new ConcertoIAnello();
 
                                     validator = true;
@@ -98,6 +119,8 @@ public class App {
 
                                 case "3":
 
+                                    // CREAZIONE OGGETTO DI TIPO EVENTO CON COSTRUTTORE SPECIFICO
+
                                     newEvent = new ConcertoTribuna();
 
                                     validator = true;
@@ -105,7 +128,7 @@ public class App {
                                     break;
 
                                 default:
-                                    System.out.println("\n Scelta non corretta \n");
+                                    System.out.println("\n !! Scelta non corretta !! \n");
                                     break;
                             }
                         }
@@ -114,18 +137,20 @@ public class App {
 
                     case "3": // E FUORI NEVICA
 
+                        // CREAZIONE OGGETTO DI TIPO EVENTO CON COSTRUTTORE SPECIFICO
+
                         newEvent = new SpettacoloTeatrale();
 
                         break;
 
                     default:
-                        System.err.println("\n Scelta non corretta \n");
+                        System.err.println("\n !!  Scelta non corretta !!\n");
                         break;
                 }
 
                 // STAMPA INFO E AVVIA FUNZIONI DI PRENOTAZIONE
 
-                if (newEvent != null) {
+                if (newEvent != null) { // CHECK INIZIALIZZAZIONE EVENTO CREATO
 
                     listaEventi.aggiungiEvento(newEvent); // AGGIUNGI EVENTO AD ARRAYLIST EVENTI IN PTOGRAMMA
 
@@ -133,10 +158,12 @@ public class App {
 
                     System.out.printf("\n Hai scelto : %s \n", newEvent.toString());
 
-                    while (ripeti) {
+                    while (ripeti) { // LOOP PRENOTAZIONE
+
                         Manager.pausa(500);
+
                         System.out.printf(
-                                "\n Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
+                                "\n • Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
                                 newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
 
                         System.out.println(
@@ -144,26 +171,28 @@ public class App {
 
                         String ticketChoice = input.nextLine();
 
-                        switch (ticketChoice.toLowerCase()) {
-                            case "1":
+                        // SWITCH INPUT
+
+                        switch (ticketChoice.toLowerCase()) { // NEW SWITCH SINTAX (TIPS FROM ORACLE JAVA EXTENSION FOR
+                                                              // VSCODE)
+
+                            case "1" -> {
                                 System.out.printf(
-                                        "\n Posti ora disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
+                                        "\n • Posti ora disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
                                         newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
 
                                 newEvent.prenota();
-                                break;
+                            }
 
-                            case "2":
+                            case "2" -> {
                                 System.out.printf(
-                                        "\n Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
+                                        "\n • Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
                                         newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
 
                                 newEvent.disdici();
-                                break;
+                            }
 
-                            default:
-                                System.err.println("\n Scelta non corretta \n");
-                                break;
+                            default -> System.err.println("\n !! Scelta non corretta !!\n");
 
                         }
 
@@ -174,6 +203,8 @@ public class App {
 
                         if (sceltaRipeti.compareToIgnoreCase("n") == 0) {
                             ripeti = false;
+
+                            // ADD CREATED EVENT TO EVENT ARRAYLIST AND PRINT LIST
 
                             Manager.listaEventi(listaEventi);
 

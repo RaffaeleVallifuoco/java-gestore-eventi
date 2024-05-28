@@ -1,8 +1,6 @@
 package it.java.gestoreEventi;
 
 import java.time.LocalDateTime;
-import java.util.Scanner;
-import java.time.format.DateTimeFormatter;
 import java.text.NumberFormat;
 import java.util.Locale;
 

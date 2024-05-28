@@ -15,6 +15,8 @@ public class Manager {
     static Scanner scan = new Scanner(System.in);
     static Scanner input = new Scanner(System.in);
 
+    // PAUSA ESECUZIONE
+
     protected static void pausa(int milliseconds) {
         try {
 
@@ -22,6 +24,8 @@ public class Manager {
         } catch (InterruptedException e) {
         }
     }
+
+    // FORMATTA DATA
 
     protected static LocalDateTime formattaData(String dataEvento) {
 
@@ -31,6 +35,8 @@ public class Manager {
 
     }
 
+    // INSERIMENTO EVENTO
+
     protected static void inputEvento() {
         System.out.print("\n Inserisci il nome dell'evento :  ");
         nomeEvento = scan.nextLine();
@@ -39,7 +45,7 @@ public class Manager {
 
         while (!validInput) {
             System.out.print(
-                    "\n Inserisci la data dell'evento ( FORMATO (dd/MM/yyyy.HH:mm) :  ");
+                    "\n Inserisci la data dell'evento separando data e ora da un PUNTO( FORMATO (dd/MM/yyyy.HH:mm) :  ");
             dataEvento = scan.nextLine();
 
             try {
@@ -48,7 +54,7 @@ public class Manager {
                 validInput = true;
             } catch (DateTimeParseException e) {
                 System.err.println(
-                        "\n Formato data non valido. Per favore, inserisci un valore corretto.\n");
+                        "\n !! Formato data non valido. Per favore, inserisci un valore corretto !!\n");
             }
         }
 
@@ -56,6 +62,8 @@ public class Manager {
         postiDisponibili = input.nextInt();
         input.nextLine();
     }
+
+    // INSERIMENTO IN ARRAY LISTA EVENTI
 
     protected static void listaEventi(ProgrammaEventi Array) {
         System.out.println(

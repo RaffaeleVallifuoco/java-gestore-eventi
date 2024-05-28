@@ -1,0 +1,7 @@
+{
+    "workbench.colorTheme": "Monokai Pro",
+    "workbench.editor.decorations.colors": true,
+    "workbench.fontAliasing": "auto",
+    "workbench.iconTheme": "Monokai Pro Icons",
+    "terminal.integrated.accessibleViewFocusOnCommandExecution": true
+}
