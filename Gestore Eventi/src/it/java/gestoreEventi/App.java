@@ -7,11 +7,11 @@ public class App {
 
         Manager.pausa(5000); // Pausa necessaria per aprire il terminale :)
 
-        System.out.println("\n - TICKETRAFFO © - ");
+        System.out.println("\n \u001B[36m - TICKETRAFFO © - \u001B[0m"); // ciano - reset
 
         Manager.pausa(100);
 
-        System.out.println("     Welcome \n"); // SPAZI NECESSARI PER CENTRATURA CARATTERI
+        System.out.println(" \u001B[33m     Welcome \u001B[0m \n"); // SPAZI NECESSARI PER CENTRATURA CARATTERI
 
         Manager.pausa(2000);
 
@@ -19,7 +19,7 @@ public class App {
 
         Scanner scan = new Scanner(System.in); // SCANNER PER INPUT STRING
         Scanner input = new Scanner(System.in); // SCANNER PER INPUT INT E DOUBLE
-        ProgrammaEventi listaEventi = new ProgrammaEventi("\nEventy TICKETRAFFO ©\n");
+        ProgrammaEventi listaEventi = new ProgrammaEventi("\n \u001B[32m Eventy TICKETRAFFO ©\u001B[0m \n");
         Evento newEvent = null; // istanzio evento generico che verrà specificato in seguito
         boolean inputValido = false;
         boolean ripeti = true;
@@ -32,7 +32,7 @@ public class App {
             System.out.println(
                     "\n [1] INSERISCI UN NUOVO EVENTO   |  [2]  PRENOTA O DISDICI UN TICKET PER L'EVENTO :  'BABY K - Donna Sulla Luna  •Milano S.Siro(07/07/2025)'' |\n| [3]  PRENOTA O DISDICI UN TICKET PER L'EVENTO :  'E FUORI NEVICA prima teatrale (04/08/1999)'' \n");
             System.out.println(
-                    "\n -------- ! INSERIRE IL NUMERO CORRISPONDENTE ALLA SCELTA DESIDERATA | ------------- \n");
+                    "\n \u001B[35m -------- ! INSERIRE IL NUMERO CORRISPONDENTE ALLA SCELTA DESIDERATA | ------------- \u001B[0m \n");
 
             String choice = scan.nextLine();
 
@@ -130,7 +130,7 @@ public class App {
                                     break;
 
                                 default:
-                                    System.out.println("\n !! Scelta non corretta !! \n");
+                                    System.out.println("\n\u001B[31m !! Scelta non corretta !! \u001B[0m \n");
                                     break;
                             }
                         }
@@ -146,7 +146,7 @@ public class App {
                         break;
 
                     default:
-                        System.err.println("\n !!  Scelta non corretta !!\n");
+                        System.err.println("\n \u001B[31m !!  Scelta non corretta !!\u001B[0m \n");
                         break;
                 }
 
@@ -165,7 +165,7 @@ public class App {
                         Manager.pausa(500);
 
                         System.out.printf(
-                                "\n • Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
+                                "\n \u001B[35m• Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \u001B[0m \n",
                                 newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
 
                         System.out.println(
@@ -180,7 +180,7 @@ public class App {
 
                             case "1" -> {
                                 System.out.printf(
-                                        "\n • Ricorda : Puoi prenotare al massimo %s posti : \n",
+                                        "\n \u001B[35m• Ricorda : Puoi prenotare al massimo %s posti : \u001B[0m \n",
                                         newEvent.getPostiDisponibili());
 
                                 newEvent.prenota();
@@ -188,13 +188,13 @@ public class App {
 
                             case "2" -> {
                                 System.out.printf(
-                                        "\n • Ricorda : Puoi disdire al massimo %s posti : \n",
+                                        "\n \u001B[35m• Ricorda : Puoi disdire al massimo %s posti : \u001B[0m \n",
                                         newEvent.getPostiPrenotati());
 
                                 newEvent.disdici();
                             }
 
-                            default -> System.err.println("\n !! Scelta non corretta !!\n");
+                            default -> System.err.println("\n \u001B[31m !! Scelta non corretta !!\u001B[0m \n");
 
                         }
 
@@ -214,12 +214,12 @@ public class App {
 
                             Manager.pausa(3000);
 
-                            System.out.println("\n TICKETRAFFO © -> GOODBYE \n");
+                            System.out.println("\n \u001B[36mTICKETRAFFO © -> GOODBYE \u001B[0m \n");
                         }
 
                     }
                 } else {
-                    System.err.println("Errore: l'input non è valido. Riprova.");
+                    System.err.println("\u001B[31m  Errore: l'input non è valido. Riprova.\u001B[0m");
                 }
             }
 
