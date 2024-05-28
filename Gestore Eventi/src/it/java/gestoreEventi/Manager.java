@@ -58,7 +58,7 @@ public class Manager {
             }
         }
 
-        System.out.print("\n Inserisci i posti disponibili per l'evento : \n");
+        System.out.print("\n Inserisci i posti disponibili per l'evento :  ");
         postiDisponibili = input.nextInt();
         input.nextLine();
     }

@@ -16,11 +16,13 @@ public class Concerto extends Evento {
         this.prezzoConcerto = prezzoConcerto;
     }
 
+    // ----------------------------------------------
+    // -------------- COSTRUTTORI -------------------
+    // ----------------------------------------------
+
     public Concerto() {
 
         super("BABY K - Donna Sulla Luna  •Milano• ");
-
-        // this.prezzoConcerto = 100.00;
 
         this.setDataEvento(LocalDateTime.of(2025, 07, 07, 21, 30, 00));
 

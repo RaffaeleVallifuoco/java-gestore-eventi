@@ -74,6 +74,8 @@ public class App {
 
                             case "2": // NUOVO EVENTO GENERICO
 
+                                Manager.inputEvento();
+
                                 // CREAZIONE OGGETTO DI TIPO EVENTO CON COSTRUTTORE SPECIFICO
 
                                 newEvent = new Evento(Manager.nomeEvento, Manager.dataEventoFormattata,
@@ -178,16 +180,16 @@ public class App {
 
                             case "1" -> {
                                 System.out.printf(
-                                        "\n • Posti ora disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
-                                        newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
+                                        "\n • Ricorda : Puoi prenotare al massimo %s posti : \n",
+                                        newEvent.getPostiDisponibili());
 
                                 newEvent.prenota();
                             }
 
                             case "2" -> {
                                 System.out.printf(
-                                        "\n • Posti disponibili per l'evento selezionato : %s  |  Posti attualmente prenotati : %s \n",
-                                        newEvent.getPostiDisponibili(), newEvent.getPostiPrenotati());
+                                        "\n • Ricorda : Puoi disdire al massimo %s posti : \n",
+                                        newEvent.getPostiPrenotati());
 
                                 newEvent.disdici();
                             }

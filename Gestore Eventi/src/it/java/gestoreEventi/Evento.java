@@ -10,7 +10,7 @@ public class Evento {
     private LocalDateTime dataEvento;
     private int postiTotali;
     private int postiDisponibili;
-    private int postiPrenotati = 0;
+    private int postiPrenotati;
 
     private Scanner scan = new Scanner(System.in);
 
@@ -69,11 +69,11 @@ public class Evento {
 
     public Evento(String titoloEvento, LocalDateTime dataEvento, int postiDisponibili) {
 
+        this.postiPrenotati = 0;
         this.titoloEvento = titoloEvento;
         this.postiTotali = 8000;
         this.dataEvento = dataEvento;
         this.postiDisponibili = postiDisponibili;
-        this.postiPrenotati = 0;
 
     }
 
@@ -88,7 +88,7 @@ public class Evento {
         LocalDateTime currentDate = LocalDateTime.now();
 
         if (checkDate(currentDate, dataEvento) && checkPositive()) {
-            System.out.println("\n QUanti posti vuoi prenotare ? \b");
+            System.out.print("\n QUanti posti vuoi prenotare ? ");
             int postiDaPrenotare = scan.nextInt();
             scan.nextLine();
 
@@ -103,7 +103,7 @@ public class Evento {
                 } catch (InterruptedException e) {
                 }
 
-                System.out.println("\n Prenotazione effettuata con successo \n");
+                System.out.println("\n - Prenotazione effettuata con successo - \n");
                 this.postiDisponibili -= postiDaPrenotare;
                 this.postiPrenotati += postiDaPrenotare;
                 System.out.printf("\nPosti ora disponibili : %s   |   Posti prenotati : %s   \n",
@@ -126,7 +126,7 @@ public class Evento {
         // ZonedDateTime eventDate = null;
 
         if (checkDate(currentDate, dataEvento) && checkPositive()) {
-            System.out.println("\n Quanti posti vuoi disdire ? \n");
+            System.out.print("\n Quanti posti vuoi disdire ? ");
             int postiDaDisdire = scan.nextInt();
             scan.nextLine();
 
@@ -144,14 +144,14 @@ public class Evento {
                 System.out.println("\n -Operazione effettuata con successo-");
                 postiDisponibili += postiDaDisdire;
                 postiPrenotati -= postiDaDisdire;
+                System.out.printf("\nPosti ora disponibili : %s   |   Posti prenotati : %s   \n", this.postiDisponibili,
+                        this.postiPrenotati);
 
             }
         } else {
             System.out.println(
                     "\n ! ERRORE ! La data dell'evento selezionato è già passata oppure l'evento non accetta prenotazioni \n -IMPOSSIBILE COMPLETARE L'OPERAZIONE- \n");
         }
-        System.out.printf("\nPosti ora disponibili : %s   |   Posti prenotati : %s   \n", this.postiDisponibili,
-                this.postiPrenotati);
 
     }
 
