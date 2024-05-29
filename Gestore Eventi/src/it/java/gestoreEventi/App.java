@@ -195,6 +195,7 @@ public class App {
                                         newEvent.getPostiDisponibili());
 
                                 newEvent.prenota();
+                                break;
                             }
 
                             case "2" -> {
@@ -203,6 +204,7 @@ public class App {
                                         newEvent.getPostiPrenotati());
 
                                 newEvent.disdici();
+                                break;
                             }
 
                             default -> System.err.println("\n \u001B[31m !! Scelta non corretta !!\u001B[0m \n");
