@@ -1,6 +1,7 @@
 package it.java.gestoreEventi;
 
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
 
@@ -88,9 +89,22 @@ public class Evento {
         LocalDateTime currentDate = LocalDateTime.now();
 
         if (checkDate(currentDate, dataEvento) && checkPositive()) {
-            System.out.print("\n QUanti posti vuoi prenotare ? ");
-            int postiDaPrenotare = scan.nextInt();
-            scan.nextLine();
+
+            boolean checkInput = false;
+            int postiDaPrenotare = 0;
+            while (!checkInput) {
+                try {
+                    System.out.print("\n QUanti posti vuoi prenotare ? ");
+                    postiDaPrenotare = scan.nextInt();
+                    scan.nextLine();
+                    checkInput = true;
+                } catch (InputMismatchException e) {
+                    System.out.println(
+                            "\n \u001B[31m Input non valido. Per favore, inserisci un numero valido. \u001B[0m \n");
+                    scan.nextLine(); // PULISCE INOUT NON VALIDO
+                }
+
+            }
 
             if (postiDaPrenotare > this.postiDisponibili) {
                 System.out.println(
@@ -113,7 +127,7 @@ public class Evento {
 
         } else {
             System.out.println(
-                    "\n ! ERRORE ! La data dell'evento selezionato è già passata oppure l'evento non accetta prenotazioni \n -IMPOSSIBILE COMPLETARE L'OPERAZIONE- \n");
+                    "\n \u001B[31m ! ERRORE ! La data dell'evento selezionato è già passata oppure l'evento non accetta prenotazioni \n -IMPOSSIBILE COMPLETARE L'OPERAZIONE- \u001B[0m \n");
         }
 
     }
@@ -126,13 +140,25 @@ public class Evento {
         // ZonedDateTime eventDate = null;
 
         if (checkDate(currentDate, dataEvento) && checkPositive()) {
-            System.out.print("\n Quanti posti vuoi disdire ? ");
-            int postiDaDisdire = scan.nextInt();
-            scan.nextLine();
 
-            if (postiDaDisdire >= this.postiPrenotati) {
+            boolean checkInput = false;
+            int postiDaDisdire = 0;
+            while (!checkInput) {
+                try {
+                    System.out.print("\n Quanti posti vuoi disdire ? ");
+                    postiDaDisdire = scan.nextInt();
+                    scan.nextLine();
+                    checkInput = true;
+                } catch (InputMismatchException e) {
+                    System.out.println(
+                            "\n \u001B[31m Input non valido. Per favore, inserisci un numero valido. \u001B[0m \n");
+                    scan.nextLine(); // PULISCE INOUT NON VALIDO
+                }
+            }
+
+            if (postiDaDisdire > this.postiPrenotati) {
                 System.out.println(
-                        "\n - ! ATTENZIONE ! - \n Impossibile disdire pià posti di quanti ne siano stati prenotati. \n -IMPOSSIBILE COMPLETARE L'OPERAZIONE-");
+                        "\n - \u001B[31m ! ATTENZIONE ! - \n Impossibile disdire pià posti di quanti ne siano stati prenotati. \n -IMPOSSIBILE COMPLETARE L'OPERAZIONE- \u001B[0m \n");
             } else {
 
                 try {

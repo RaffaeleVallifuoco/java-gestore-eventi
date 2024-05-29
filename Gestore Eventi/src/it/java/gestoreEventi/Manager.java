@@ -1,6 +1,7 @@
 package it.java.gestoreEventi;
 
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -54,13 +55,23 @@ public class Manager {
                 validInput = true;
             } catch (DateTimeParseException e) {
                 System.err.println(
-                        "\n !! Formato data non valido. Per favore, inserisci un valore corretto !!\n");
+                        "\n \u001B[31m  !! Formato data non valido. Per favore, inserisci un valore corretto !! \u001B[0m \n");
             }
         }
 
-        System.out.print("\n Inserisci i posti disponibili per l'evento :  ");
-        postiDisponibili = input.nextInt();
-        input.nextLine();
+        boolean validInt = false;
+        while (!validInt) {
+            try {
+                System.out.print("\n Inserisci i posti disponibili per l'evento :  ");
+                postiDisponibili = input.nextInt();
+                input.nextLine();
+
+                validInt = true;
+            } catch (InputMismatchException e) {
+                System.out.println("\n \u001B[31m !! Input non valido!!\u001B[0m \n");
+                input.next(); // Clear the invalid input
+            }
+        }
     }
 
     // INSERIMENTO IN ARRAY LISTA EVENTI

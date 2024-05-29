@@ -1,5 +1,6 @@
 package it.java.gestoreEventi;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -55,10 +56,20 @@ public class App {
                             case "1": // NUOVO CONCERTO
 
                                 Manager.inputEvento();
+                                boolean validDouble = false;
+                                double prezzoConcerto = 0;
 
-                                System.out.print("\n Inserisci il prezzo del biglietto :  ");
-                                double prezzoConcerto = input.nextDouble();
-                                input.nextLine();
+                                while (!validDouble) {
+                                    try {
+                                        System.out.print("\n Inserisci il prezzo del biglietto :  ");
+                                        prezzoConcerto = input.nextDouble();
+
+                                        validDouble = true;
+                                    } catch (InputMismatchException e) {
+                                        System.out.println("\n \u001B[31m !! Prezzo non valido!!\u001B[0m\n");
+                                        input.nextLine(); // Clear the invalid input
+                                    }
+                                }
 
                                 System.out.println("\n ... inserimento in corso (please wait) ... \n");
 
@@ -171,7 +182,7 @@ public class App {
                         System.out.println(
                                 "\n Cosa vuoi fare : [1]  PRENOTA UN BIGLIETTO  |  [2]  DISDICI UN BIGLIETTO \n");
 
-                        String ticketChoice = input.nextLine();
+                        String ticketChoice = scan.nextLine();
 
                         // SWITCH INPUT
 
